@@ -1,0 +1,20 @@
+
+# NMEA Decoding #2: Construct NMEA Sentences
+# PrecAg Tech Class
+# by Aj.Tum, AE KMITL
+
+from machine import UART
+
+uart = UART(2, baudrate=9600, tx=17, rx=16)
+
+buffer = ''
+while True:
+    if uart.any():
+        c = uart.read()
+        if c != b'\n':
+            buffer += c.decode('utf8')
+        else:
+            print(buffer)
+#            line = buffer.split(',')
+#            print(line)
+            buffer = ''  # reset buffer
