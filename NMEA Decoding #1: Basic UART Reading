@@ -1,0 +1,12 @@
+# NMEA Decoding #1: Basic UART Reading
+# PrecAg Tech Class
+# by Aj.Tum, AE KMITL
+
+from machine import UART
+
+uart = UART(2, baudrate=9600, tx=17, rx=16)
+
+while True:
+    if uart.any():
+        c = uart.read().decode('utf8')
+        print(c, end='')
